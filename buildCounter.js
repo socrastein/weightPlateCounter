@@ -1,14 +1,14 @@
 const plateSizesPounds = [
-  { weight: 1.25, width: 1, height: 4.5, lbs: true },
-  { weight: 2.5, width: 1, height: 6.75, lbs: true },
-  { weight: 5, width: 1, height: 9, lbs: true },
-  { weight: 10, width: 1, height: 18, lbs: true },
-  { weight: 15, width: 1.375, height: 18, lbs: true },
-  { weight: 25, width: 2, height: 18, lbs: true },
-  { weight: 35, width: 2.75, height: 18, lbs: true },
-  { weight: 45, width: 3.25, height: 18, lbs: true },
-  { weight: 55, width: 3.75, height: 18, lbs: true },
-  { weight: 100, width: 5, height: 18, lbs: true },
+  { weight: 1.25, width: 1, height: 33, lbs: true },
+  { weight: 2.5, width: 1, height: 50, lbs: true },
+  { weight: 5, width: 1, height: 66, lbs: true },
+  { weight: 10, width: 1, height: 100, lbs: true },
+  { weight: 15, width: 1.375, height: 100, lbs: true },
+  { weight: 25, width: 2, height: 100, lbs: true },
+  { weight: 35, width: 2.75, height: 100, lbs: true },
+  { weight: 45, width: 3.25, height: 100, lbs: true },
+  { weight: 55, width: 3.75, height: 100, lbs: true },
+  { weight: 100, width: 5, height: 100, lbs: true },
 ];
 
 const plateSizesKilos = [
@@ -52,17 +52,13 @@ const buildEmptyPlateCounter = () => {
   container.id = "plateCounterContainer";
   const total = document.createElement("p");
   total.id = "plateCounterTotal";
-  total.textContent = totalValue;
-  const totalUnits = document.createElement("p");
-  totalUnits.id = "plateCounterTotalUnits";
-  totalUnits.textContent = units;
+  total.textContent = `${totalValue} ${units}`;
   const displayDiv = document.createElement("div");
   displayDiv.id = "plateCounterDisplay";
   const buttonContainer = document.createElement("div");
   buttonContainer.id = "plateCounterButtonContainer";
 
   container.append(total);
-  container.append(totalUnits);
   container.append(displayDiv);
   container.append(buttonContainer);
 
@@ -88,11 +84,19 @@ const buildEmptyPlateCounter = () => {
 const updatePlateCounterTotal = () => {
   const displayTotal = document.getElementById("plateCounterTotal");
   const length = platesArray.length;
-  let total = 45;
+  let total;
+  if (counterState.unitsInPounds) {
+    total = 45;
+    units = "lbs";
+  } else {
+    total = 20;
+    units = "kg";
+  }
+
   for (let i = 0; i < length; i++) {
     total += platesArray[i].weight * 2;
   }
-  displayTotal.textContent = total;
+  displayTotal.textContent = `${total} ${units}`;
 };
 
 const updatePlateCounterDisplay = () => {
@@ -105,7 +109,7 @@ const updatePlateCounterDisplay = () => {
       plate.classList.add("plateCounterPlate");
       plate.textContent = platesArray[i].weight;
       plate.style.width = `${platesArray[i].width}rem`;
-      plate.style.height = `${platesArray[i].height}rem`;
+      plate.style.height = `${platesArray[i].height}%`;
       displayPlates.append(plate);
     }
   }

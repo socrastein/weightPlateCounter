@@ -22,29 +22,28 @@ body {
 #mainContainer {
   display: flex;
   height: 100dvh;
-  padding: .5rem;
 }
 
 #plateCounterContainer {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: .5rem;
+  padding: 2.5%;
 }
 
 #plateCounterTotal {
+  height: fit-content;
   font-size: 3rem;
   font-weight: bold;
 }
-#plateCounterTotalUnits {
-  font-size: 2rem;
-}
+
 #plateCounterDisplay {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 20rem;
+  height: 40%;
   width: min(90%, 24rem);
   border: solid black 1px;
   border-radius: 1rem;
@@ -58,7 +57,7 @@ body {
   flex-grow: 1;
   height: 3rem;
   max-width: 100%;
-  margin-left: 10%;
+  margin-left: 5%;
   border-radius: 0.5rem 0 0 0.5rem;
   background: linear-gradient(silver, grey);
 }
@@ -72,14 +71,13 @@ body {
   justify-content: flex-end;
 }
 #plateCounterButtonContainer {
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
   width: min(80%, 20rem);
-  max-height: 20rem;
+  height: 45%;
 }
 
 #plateCounterAddButton,
